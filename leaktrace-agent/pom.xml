@@ -13,4 +13,20 @@
     <packaging>jar</packaging>
     <name>LeakTrace :: leaktrace-agent</name>
     <description>Java agent: premain, instrumentacao ByteBuddy, jar shaded.</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <!-- Modulo de montagem: agrega outros modulos de implementacao. -->
+                    <execution>
+                        <id>enforce-module-boundaries</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

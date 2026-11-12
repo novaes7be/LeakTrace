@@ -69,6 +69,7 @@
         <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
         <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
         <maven-enforcer-plugin.version>3.6.2</maven-enforcer-plugin.version>
+        <maven-site-plugin.version>3.21.0</maven-site-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -200,7 +201,68 @@
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>${maven-enforcer-plugin.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-toolchain</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>[17,)</version>
+                                </requireJavaVersion>
+                                <requireMavenVersion>
+                                    <version>[3.9,)</version>
+                                </requireMavenVersion>
+                                <requirePluginVersions/>
+                                <dependencyConvergence/>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <!--
+                      Fronteira entre modulos: um modulo de biblioteca so pode depender
+                      de leaktrace-core e leaktrace-annotations; ByteBuddy so no agent.
+                      Modulos de montagem (agent, starter, integration-tests, demo-app)
+                      desligam esta execucao com <phase>none</phase>.
+                    -->
+                    <execution>
+                        <id>enforce-module-boundaries</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <message>Regra de dependencia violada: modulos so podem depender de leaktrace-core e leaktrace-annotations, e ByteBuddy e exclusivo do leaktrace-agent (ver CLAUDE.md).</message>
+                                    <excludes>
+                                        <exclude>io.github.novaes7be</exclude>
+                                        <exclude>net.bytebuddy:*:*:*:compile</exclude>
+                                        <exclude>net.bytebuddy:*:*:*:runtime</exclude>
+                                        <exclude>net.bytebuddy:*:*:*:provided</exclude>
+                                    </excludes>
+                                    <includes>
+                                        <include>io.github.novaes7be:leaktrace-core</include>
+                                        <include>io.github.novaes7be:leaktrace-annotations</include>
+                                    </includes>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>
