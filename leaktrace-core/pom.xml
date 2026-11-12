@@ -13,4 +13,11 @@
     <packaging>jar</packaging>
     <name>LeakTrace :: leaktrace-core</name>
     <description>Contratos, eventos e modelo de configuracao.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.novaes7be</groupId>
+            <artifactId>leaktrace-annotations</artifactId>
+        </dependency>
+    </dependencies>
 </project>
