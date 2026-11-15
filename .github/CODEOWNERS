@@ -1,0 +1,39 @@
+# Donos por módulo (CLAUDE.md). A última regra que casa vence.
+#
+# PENDENTE: substituir @DEV_A, @DEV_B e @DEV_C pelos usuários do GitHub de cada dev.
+# Até lá o GitHub ignora essas linhas (usuário inválido) e vale o fallback abaixo.
+
+*                                   @novaes7be
+
+# Dev A: núcleo e agente
+/leaktrace-bom/                     @DEV_A
+/leaktrace-annotations/             @DEV_A
+/leaktrace-core/                    @DEV_A
+/leaktrace-taint-engine/            @DEV_A
+/leaktrace-agent/                   @DEV_A
+
+# Dev B: regras, processor, testes de integração
+/leaktrace-rules/                   @DEV_B
+/leaktrace-processor/               @DEV_B
+/integration-tests/                 @DEV_B
+
+# Dev C: sinks, reporter, starter, action, demo, docs
+/leaktrace-sinks/                   @DEV_C
+/leaktrace-reporter/                @DEV_C
+/leaktrace-spring-boot-starter/     @DEV_C
+/leaktrace-action/                  @DEV_C
+/demo-app/                          @DEV_C
+/docs/                              @DEV_C
+/docs/adr/ADR-001*                  @DEV_A
+/docs/adr/ADR-002*                  @DEV_A
+
+# Contratos do core: os três aprovam (CLAUDE.md).
+/leaktrace-core/src/main/java/io/github/novaes7be/leaktrace/core/event/   @DEV_A @DEV_B @DEV_C
+/leaktrace-core/src/main/java/io/github/novaes7be/leaktrace/core/sink/    @DEV_A @DEV_B @DEV_C
+/leaktrace-core/src/main/java/io/github/novaes7be/leaktrace/core/rule/    @DEV_A @DEV_B @DEV_C
+/leaktrace-core/src/main/java/io/github/novaes7be/leaktrace/core/report/  @DEV_A @DEV_B @DEV_C
+
+# Build e CI: dono do build (A) e o dono da documentação de qualidade (C).
+/pom.xml                            @DEV_A
+/.github/                           @DEV_A @DEV_C
+/config/                            @DEV_A @DEV_C

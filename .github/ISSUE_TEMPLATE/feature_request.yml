@@ -1,0 +1,24 @@
+name: Sugestão
+description: Novo sink, regra, reporter ou melhoria.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema
+      description: Que vazamento ou dor isso resolve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposta
+    validations:
+      required: true
+  - type: checkboxes
+    id: contract
+    attributes:
+      label: Impacto
+      options:
+        - label: Exige mudança em contrato do core (TaintEvent, Sink, Rule, Reporter)
+        - label: Exige nova dependência externa
