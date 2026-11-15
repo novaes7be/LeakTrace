@@ -54,6 +54,14 @@ class PlantedLeaksTest {
         assertThat(response.body()).contains(wrongPassword);
     }
 
+    @Test
+    void correctPasswordIsAccepted() throws Exception {
+        HttpResponse<String> response = post("/api/login",
+            "{\"username\":\"demo\",\"password\":\"" + DemoData.PASSWORD + "\"}");
+
+        assertThat(response.statusCode()).isEqualTo(200);
+    }
+
     private HttpResponse<String> post(String path, String json) throws Exception {
         return http.send(HttpRequest.newBuilder(uri(path))
                 .header("Content-Type", "application/json")
