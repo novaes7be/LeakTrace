@@ -1,0 +1,41 @@
+name: Bug
+description: Algo não funciona como esperado.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Nunca cole dados sensíveis reais** (CPF, cartão, token, senha) aqui, nem em logs anexados.
+        Use valores sintéticos ou mascarados. Se o bug é o próprio LeakTrace vazando dado, use o reporte privado (SECURITY.md).
+  - type: dropdown
+    id: module
+    attributes:
+      label: Módulo
+      options: [agent, taint-engine, core, annotations, rules, processor, sinks, reporter, spring-boot-starter, action, demo-app, não sei]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: O que aconteceu e o que era esperado
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Como reproduzir
+      description: Passos mínimos, de preferência com o demo-app.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versões
+      placeholder: "LeakTrace 0.1.0, Java 21, Spring Boot 4.1, SO"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Saída relevante (mascarada)
+      render: text
