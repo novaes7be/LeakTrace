@@ -13,4 +13,17 @@
     <packaging>jar</packaging>
     <name>LeakTrace :: leaktrace-sinks</name>
     <description>Sinks: log, HTTP e exceptions.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.novaes7be</groupId>
+            <artifactId>leaktrace-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.novaes7be</groupId>
+            <artifactId>leaktrace-core</artifactId>
+            <classifier>test-fixtures</classifier>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

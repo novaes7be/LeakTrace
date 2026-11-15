@@ -20,4 +20,53 @@
             <artifactId>leaktrace-annotations</artifactId>
         </dependency>
     </dependencies>
+
+    <!--
+      Fakes dos contratos em src/testFixtures/java, publicados como
+      leaktrace-core:test-fixtures para os outros modulos testarem sem depender
+      uns dos outros. Uso: dependencia leaktrace-core com classifier test-fixtures.
+    -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-test-fixtures</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/testFixtures/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>test-fixtures-jar</id>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>test-fixtures</classifier>
+                            <includes>
+                                <include>io/github/novaes7be/leaktrace/core/testing/**</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/*Test.class</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -13,4 +13,17 @@
     <packaging>jar</packaging>
     <name>LeakTrace :: leaktrace-processor</name>
     <description>Annotation processor (tempo de build).</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.novaes7be</groupId>
+            <artifactId>leaktrace-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.novaes7be</groupId>
+            <artifactId>leaktrace-core</artifactId>
+            <classifier>test-fixtures</classifier>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

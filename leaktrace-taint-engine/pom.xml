@@ -13,4 +13,17 @@
     <packaging>jar</packaging>
     <name>LeakTrace :: leaktrace-taint-engine</name>
     <description>Rastreio de taint por identidade.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.novaes7be</groupId>
+            <artifactId>leaktrace-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.novaes7be</groupId>
+            <artifactId>leaktrace-core</artifactId>
+            <classifier>test-fixtures</classifier>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
